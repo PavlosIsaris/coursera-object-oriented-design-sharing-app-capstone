@@ -20,6 +20,7 @@
     <string name="toggle_borrowed">Borrowed</string>
     <string name="title_activity_main">Sharing App</string>
     <string name="action_settings">Settings</string>
+    <string name="add_users">add users</string>
 
 
 </resources>

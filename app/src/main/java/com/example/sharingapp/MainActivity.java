@@ -38,4 +38,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddItemActivity.class);
         startActivity(intent);
     }
+
+    public void usersActivity(View view) {
+        System.out.println("add users");
+    }
 }

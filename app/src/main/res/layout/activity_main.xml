@@ -32,6 +32,19 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <ImageButton
+        android:id="@+id/seeUsersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:onClick="usersActivity"
+        android:background="@color/colorAccent"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/add_users" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
