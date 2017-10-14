@@ -1,8 +1,5 @@
 package com.example.sharingapp.users;
 
-/**
- * Created by Paul on 13-Oct-17.
- */
 
 public class User {
     private String id;

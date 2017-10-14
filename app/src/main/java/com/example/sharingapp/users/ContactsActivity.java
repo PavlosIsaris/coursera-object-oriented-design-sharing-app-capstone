@@ -1,6 +1,7 @@
 package com.example.sharingapp.users;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -39,5 +40,7 @@ public class ContactsActivity extends AppCompatActivity {
 
     public void addUserActivity(View view) {
         System.out.println("add users");
+        Intent intent = new Intent(this, AddUserActivity.class);
+        startActivity(intent);
     }
 }
