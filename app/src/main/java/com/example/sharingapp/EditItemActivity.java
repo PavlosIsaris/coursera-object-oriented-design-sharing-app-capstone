@@ -6,9 +6,7 @@ import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -18,6 +16,8 @@ import android.widget.TextView;
 import com.example.sharingapp.users.User;
 import com.example.sharingapp.users.UserAdapter;
 import com.example.sharingapp.users.UserList;
+
+import java.util.ArrayList;
 
 /**
  * Edit preexisting item: editing an item consists of deleting the old item and adding a new item
@@ -44,7 +44,7 @@ public class EditItemActivity extends AppCompatActivity {
     private EditText borrower;
     private TextView  borrower_tv;
     private Switch status;
-    private Spinner users;
+    private Spinner users_spinner;
     private UserList userList;
 
     @Override
@@ -65,10 +65,13 @@ public class EditItemActivity extends AppCompatActivity {
         status = (Switch) findViewById(R.id.available_switch);
         context = getApplicationContext();
 
-        users = (Spinner) findViewById(R.id.users_spinner);
+        users_spinner = (Spinner) findViewById(R.id.users_spinner);
         userList.loadUsers(context);
+        ArrayList<User> usersTest = userList.getUsers();
+        System.out.println(usersTest.size());
         UserAdapter adapter = new UserAdapter(context, userList.getUsers(), R.layout.list_user);
-        users.setAdapter(adapter);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        users_spinner.setAdapter(adapter);
 
         item_list.loadItems(context);
 
