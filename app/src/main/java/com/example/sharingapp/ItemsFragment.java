@@ -73,7 +73,7 @@ public abstract class ItemsFragment extends Fragment {
 
     /**
      * filterItems is implemented independently by AvailableItemsFragment, BorrowedItemsFragment and AllItemsFragment
-     * @return selected_items
+     * @return users
      */
     public abstract ArrayList<Item> filterItems();
 

@@ -19,11 +19,11 @@ public class UserList {
     private static ArrayList<User> users;
     private String FILENAME = "user_file.sav";
 
-    public static ArrayList<User> getUsers() {
+    public ArrayList<User> getUsers() {
         return users;
     }
 
-    public static void setUsers(ArrayList<User> users) {
+    public void setUsers(ArrayList<User> users) {
         UserList.users = users;
     }
 
@@ -79,7 +79,7 @@ public class UserList {
         throw new Exception("User not found");
     }
 
-    public void loadItems(Context context) {
+    public void loadUsers(Context context) {
 
         try {
             FileInputStream fis = context.openFileInput(FILENAME);
@@ -93,9 +93,11 @@ public class UserList {
         } catch (IOException e) {
             users = new ArrayList<User>();
         }
+
+        users.add(0, new User("id", "paulisaris@gmail.com", "Pavlaras"));
     }
 
-    public void saveItems(Context context) {
+    public void saveUsers(Context context) {
         try {
             FileOutputStream fos = context.openFileOutput(FILENAME, 0);
             OutputStreamWriter osw = new OutputStreamWriter(fos);

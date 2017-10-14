@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.example.sharingapp.R;
 
@@ -14,21 +15,24 @@ import java.util.ArrayList;
 public class UserAdapter extends ArrayAdapter<User> {
 
     private LayoutInflater inflater;
-    private Fragment fragment;
 
-    public UserAdapter(Context context, ArrayList<User> users, Fragment fragment) {
-        super(context, 0, users);
+    public UserAdapter(Context context, ArrayList<User> users,  int textViewResourceId) {
+        super(context, textViewResourceId, users);
         inflater = LayoutInflater.from(context);
-        this.fragment = fragment;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         User user = getItem(position);
 
+
         // Check if an existing view is being reused, otherwise inflate the view.
         if (convertView == null) {
             convertView = inflater.from(getContext()).inflate(R.layout.list_user, parent, false);
+            TextView username_tv = (TextView) convertView.findViewById(R.id.username_tv);
+            TextView email_tv = (TextView) convertView.findViewById(R.id.email_tv);
+            username_tv.setText(user.getUsername());
+            email_tv.setText(user.getEmail());
         }
 
         return convertView;

@@ -21,6 +21,11 @@
     <string name="title_activity_main">Sharing App</string>
     <string name="action_settings">Settings</string>
     <string name="add_users">add users</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

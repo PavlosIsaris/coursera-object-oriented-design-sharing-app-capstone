@@ -9,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.sharingapp.users.ContactsActivity;
+
 /**
  * Home Activity of the App
  */
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void usersActivity(View view) {
-        System.out.println("add users");
+        System.out.println("click");
+        Intent intent = new Intent(this, ContactsActivity.class);
+        startActivity(intent);
     }
 }
