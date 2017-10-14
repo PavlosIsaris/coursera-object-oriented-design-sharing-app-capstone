@@ -32,31 +32,18 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--<ImageButton-->
-        <!--android:id="@+id/seeUsersButton"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="end"-->
-        <!--android:onClick="usersActivity"-->
-        <!--android:background="@color/colorAccent"-->
-        <!--app:srcCompat="@android:drawable/ic_input_add"-->
-        <!--tools:layout_editor_absoluteX="8dp"-->
-        <!--tools:layout_editor_absoluteY="0dp"-->
-        <!--android:layout_marginEnd="16dp"-->
-        <!--android:clickable="true"-->
-        <!--android:contentDescription="@string/add_users" />-->
-
     <Button
         android:id="@+id/resumebutton"
-        android:layout_width="75dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
         android:layout_gravity="end"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp"
         android:layout_marginEnd="16dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="resume" android:layout_marginTop="-60dp"
+        android:text="@string/contacts" android:layout_marginTop="-60dp"
         android:onClick="usersActivity"/>
 
     <android.support.v4.view.ViewPager

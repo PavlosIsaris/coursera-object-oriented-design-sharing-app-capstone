@@ -94,7 +94,7 @@ public class UserList {
             users = new ArrayList<User>();
         }
 
-        users.add(0, new User("id", "paulisaris@gmail.com", "Pavlaras"));
+        users.add(0, new User("id", "test@dev.com", "Paul The Developer"));
     }
 
     public void saveUsers(Context context) {
