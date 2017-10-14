@@ -211,7 +211,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:onClick="deleteItem"
+            android:onClick="deleteUser"
             android:text="@string/delete_item"
             android:textAppearance="@android:style/TextAppearance.Medium"/>
 

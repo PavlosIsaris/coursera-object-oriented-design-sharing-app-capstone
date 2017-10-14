@@ -36,6 +36,10 @@ public class ContactsActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        userList.loadUsers(this);
+        adapter = new UserAdapter(this, userList.getUsers(), R.layout.list_user);
+
+        myContacts.setAdapter(adapter);
     }
 
     public void addUserActivity(View view) {

@@ -95,7 +95,7 @@ public class UserList {
         }
 
         if(users.isEmpty())
-            users.add(0, new User("id", "test@dev.com", "Paul The Developer"));
+            users.add(0, new User("id1", "test@dev.com", "Paul The Developer"));
     }
 
     public void saveUsers(Context context) {

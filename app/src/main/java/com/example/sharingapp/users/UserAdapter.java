@@ -1,6 +1,7 @@
 package com.example.sharingapp.users;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ public class UserAdapter extends ArrayAdapter<User> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         User user = getItem(position);
 
 
@@ -33,6 +34,16 @@ public class UserAdapter extends ArrayAdapter<User> {
             username_tv.setText(user.getUsername());
             email_tv.setText(user.getEmail());
         }
+
+        convertView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent edit = new Intent(getContext(), EditUserActivity.class);
+                edit.putExtra("position", position);
+                getContext().startActivity(edit);
+            }
+        });
 
         return convertView;
     }
