@@ -3,6 +3,7 @@ package com.example.sharingapp;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.sharingapp.users.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -110,6 +111,12 @@ public class ItemList {
             }
         }
         return selected_items;
+    }
+
+    public ArrayList<User> getActiveBorrowers() {
+        ArrayList<User> activeBorrowers = new ArrayList<>();
+        // TODO iterate over items and populate list
+        return  activeBorrowers;
     }
 }
 

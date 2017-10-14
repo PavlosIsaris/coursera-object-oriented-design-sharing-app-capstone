@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import com.example.sharingapp.users.User;
+
 import java.io.ByteArrayOutputStream;
 import java.util.UUID;
 
@@ -17,11 +19,22 @@ public class Item {
     private String description;
     private Dimensions dimensions;
     private String status;
+    // TODO refactor to have User object as borrower
     private String borrower;
     protected transient Bitmap image; // Must be transient or app crashes...
     // https://forum.xda-developers.com/android/help/help-android-native-crash-debugging-t3477559
     protected String image_base64;
     private String id;
+    private User borrowerUser;
+
+    public void setBorrowerUser(User borrowerUser) {
+        this.borrowerUser = borrowerUser;
+    }
+
+    public User getBorrowerUser() {
+
+        return borrowerUser;
+    }
 
     public Item(String title, String maker, String description, Dimensions dimensions, Bitmap image, String id) {
         this.title = title;

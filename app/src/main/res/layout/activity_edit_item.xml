@@ -132,17 +132,29 @@
 
     </LinearLayout>
 
-    <Switch
-        android:id="@+id/available_switch"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:checked="true"
-        android:showText="true"
-        android:onClick="toggleSwitch"
-        android:text="@string/status_hint"
-        android:textAppearance="@android:style/TextAppearance.Medium"
-        android:textOff="@string/toggle_borrowed"
-        android:textOn="@string/toggle_available" />
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="5dp">
+        <Switch
+            android:id="@+id/available_switch"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:showText="true"
+            android:onClick="toggleSwitch"
+            android:text="@string/status_hint"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textOff="@string/toggle_borrowed"
+            android:textOn="@string/toggle_available" />
+        <Spinner
+            android:id="@+id/users_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"/>
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"

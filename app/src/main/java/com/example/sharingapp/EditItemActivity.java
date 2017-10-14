@@ -8,10 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.example.sharingapp.users.User;
+import com.example.sharingapp.users.UserAdapter;
+import com.example.sharingapp.users.UserList;
 
 /**
  * Edit preexisting item: editing an item consists of deleting the old item and adding a new item
@@ -38,12 +44,15 @@ public class EditItemActivity extends AppCompatActivity {
     private EditText borrower;
     private TextView  borrower_tv;
     private Switch status;
+    private Spinner users;
+    private UserList userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
 
+        userList = new UserList();
         title = (EditText) findViewById(R.id.title);
         maker = (EditText) findViewById(R.id.maker);
         description = (EditText) findViewById(R.id.description);
@@ -54,8 +63,13 @@ public class EditItemActivity extends AppCompatActivity {
         borrower_tv = (TextView) findViewById(R.id.borrower_tv);
         photo = (ImageView) findViewById(R.id.image_view);
         status = (Switch) findViewById(R.id.available_switch);
-
         context = getApplicationContext();
+
+        users = (Spinner) findViewById(R.id.users_spinner);
+        userList.loadUsers(context);
+        UserAdapter adapter = new UserAdapter(context, userList.getUsers(), R.layout.list_user);
+        users.setAdapter(adapter);
+
         item_list.loadItems(context);
 
         // get intent from HomeActivity

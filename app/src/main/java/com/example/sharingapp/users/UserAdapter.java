@@ -23,9 +23,28 @@ public class UserAdapter extends ArrayAdapter<User> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+
+        convertView = rowView(convertView,position, parent);
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent edit = new Intent(getContext(), EditUserActivity.class);
+                    edit.putExtra("position", position);
+                    getContext().startActivity(edit);
+                }
+            });
+
+        return convertView;
+    }
+
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        return rowView(convertView,position, parent);
+    }
+
+    private View rowView(View convertView , int position, ViewGroup parent){
+
         User user = getItem(position);
-
-
         // Check if an existing view is being reused, otherwise inflate the view.
         if (convertView == null) {
             convertView = inflater.from(getContext()).inflate(R.layout.list_user, parent, false);
@@ -34,16 +53,6 @@ public class UserAdapter extends ArrayAdapter<User> {
             username_tv.setText(user.getUsername());
             email_tv.setText(user.getEmail());
         }
-
-        convertView.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                Intent edit = new Intent(getContext(), EditUserActivity.class);
-                edit.putExtra("position", position);
-                getContext().startActivity(edit);
-            }
-        });
 
         return convertView;
     }

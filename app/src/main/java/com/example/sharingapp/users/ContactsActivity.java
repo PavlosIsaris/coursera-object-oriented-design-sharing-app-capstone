@@ -24,11 +24,12 @@ public class ContactsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userList = new UserList();
+        context = this;
         System.out.println("ON create");
         setContentView(R.layout.activity_contacts);
         myContacts = (ListView) findViewById(R.id.contacts);
-        userList.loadUsers(this);
-        adapter = new UserAdapter(this, userList.getUsers(), R.layout.list_user);
+        userList.loadUsers(context);
+        adapter = new UserAdapter(context, userList.getUsers(), R.layout.list_user);
 
         myContacts.setAdapter(adapter);
     }
@@ -36,15 +37,15 @@ public class ContactsActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        userList.loadUsers(this);
-        adapter = new UserAdapter(this, userList.getUsers(), R.layout.list_user);
+        userList.loadUsers(context);
+        adapter = new UserAdapter(context, userList.getUsers(), R.layout.list_user);
 
         myContacts.setAdapter(adapter);
     }
 
     public void addUserActivity(View view) {
         System.out.println("add users");
-        Intent intent = new Intent(this, AddUserActivity.class);
+        Intent intent = new Intent(context, AddUserActivity.class);
         startActivity(intent);
     }
 }

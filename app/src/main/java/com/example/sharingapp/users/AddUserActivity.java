@@ -59,8 +59,7 @@ public class AddUserActivity extends AppCompatActivity {
         userList.saveUsers(context);
 
         /* End AddItemActivity */
-        Intent intent = new Intent(this, ContactsActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     private String randString(int length) {
