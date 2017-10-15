@@ -30,6 +30,8 @@
     <string name="title_activity_add_user">AddUserActivity</string>
     <string name="delete_user">Delete User</string>
     <string name="save_user">Save Contact</string>
+    <string name="user_is_borrower">This User is a borrower</string>
+    <string name="dialog_title">Error</string>
 
 
 </resources>

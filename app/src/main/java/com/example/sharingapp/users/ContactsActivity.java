@@ -14,8 +14,6 @@ import com.example.sharingapp.R;
 public class ContactsActivity extends AppCompatActivity {
 
     private UserList userList;
-    private UserList activeBorrowersList;
-    private ItemList itemList;
     private ListView myContacts;
     private UserAdapter adapter;
     private Context context;

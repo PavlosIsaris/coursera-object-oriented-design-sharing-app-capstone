@@ -1,27 +1,24 @@
 package com.example.sharingapp.users;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.TextView;
 
+import com.example.sharingapp.ItemList;
 import com.example.sharingapp.R;
-import com.example.sharingapp.users.UserList;
 
-public class EditUserActivity extends AppCompatActivity {
+public class EditUserActivity extends Activity {
 
     private UserList userList = new UserList();
     private User user;
     private Context context;
-
+    private UserList activeBorrowersList;
+    private ItemList itemList;
     private EditText username;
     private EditText email;
 
@@ -32,11 +29,12 @@ public class EditUserActivity extends AppCompatActivity {
 
         username = (EditText) findViewById(R.id.username_et);
         email = (EditText) findViewById(R.id.email_et);
+        itemList = new ItemList();
 
 
         context = getApplicationContext();
         userList.loadUsers(context);
-
+        itemList.loadItems(context);
         // get intent from HomeActivity
         Intent intent = getIntent();
         int pos = intent.getIntExtra("position", 0);
@@ -47,44 +45,77 @@ public class EditUserActivity extends AppCompatActivity {
         email.setText(user.getEmail());
     }
 
+    private boolean isUserABorrower() {
+        for(int i = 0; i < itemList.getSize(); i++) {
+            if(itemList.getItem(i).getBorrower() != null) {
+                if (user.getId().equals(itemList.getItem(i).getBorrower().getId())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public void deleteUser(View view) {
-        userList.removeUser(user);
-        userList.saveUsers(context);
+        if(isUserABorrower()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+            // 2. Chain together various setter methods to set the dialog characteristics
+            builder.setMessage(R.string.dialog_title)
+                    .setTitle(R.string.user_is_borrower);
+
+            // 3. Get the AlertDialog from create()
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else {
+            userList.removeUser(user);
+            userList.saveUsers(context);
 
          /* End EditItemActivity */
-        finish();
+            finish();
+        }
     }
 
     public void saveUser(View view) {
+        if(isUserABorrower()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-        String username_str = username.getText().toString();
-        String email_str = email.getText().toString();
+            // 2. Chain together various setter methods to set the dialog characteristics
+            builder.setMessage(R.string.dialog_title)
+                    .setTitle(R.string.user_is_borrower);
+
+            // 3. Get the AlertDialog from create()
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else {
+            String username_str = username.getText().toString();
+            String email_str = email.getText().toString();
 
 
-        if (username_str.equals("")) {
-            username.setError("Empty field!");
-            return;
-        }
+            if (username_str.equals("")) {
+                username.setError("Empty field!");
+                return;
+            }
 
-        if (email_str.equals("")) {
-            email.setError("Empty field!");
-            return;
-        }
+            if (email_str.equals("")) {
+                email.setError("Empty field!");
+                return;
+            }
 
 
-        // Reuse the item id
-        String id = user.getId();
-        userList.removeUser(user);
+            // Reuse the item id
+            String id = user.getId();
+            userList.removeUser(user);
 
-        User updated_user = new User(id, email_str, username_str);
+            User updated_user = new User(id, email_str, username_str);
 
-        userList.addUser(updated_user);
+            userList.addUser(updated_user);
 
-        userList.saveUsers(context);
+            userList.saveUsers(context);
 
         /* End EditItemActivity */
-        finish();
+            finish();
+        }
     }
 
 }

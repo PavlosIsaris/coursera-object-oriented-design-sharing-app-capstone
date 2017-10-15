@@ -25,7 +25,7 @@
             android:name=".users.AddUserActivity"
             android:label="@string/title_activity_add_user"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".users.EditUserActivity"></activity>
+        <activity android:name=".users.EditUserActivity"/>
     </application>
 
 </manifest>
