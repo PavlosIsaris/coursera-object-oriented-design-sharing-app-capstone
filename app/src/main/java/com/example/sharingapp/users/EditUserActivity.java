@@ -6,13 +6,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
 import com.example.sharingapp.ItemList;
 import com.example.sharingapp.R;
 
-public class EditUserActivity extends Activity {
+public class EditUserActivity extends AppCompatActivity {
 
     private UserList userList = new UserList();
     private User user;
@@ -58,12 +59,17 @@ public class EditUserActivity extends Activity {
 
     public void deleteUser(View view) {
         if(isUserABorrower()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            AlertDialog.Builder builder = new AlertDialog.Builder(EditUserActivity.this);
 
             // 2. Chain together various setter methods to set the dialog characteristics
             builder.setMessage(R.string.dialog_title)
                     .setTitle(R.string.user_is_borrower);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
 
+                    //some code
+
+                } });
             // 3. Get the AlertDialog from create()
             AlertDialog dialog = builder.create();
             dialog.show();
@@ -78,12 +84,17 @@ public class EditUserActivity extends Activity {
 
     public void saveUser(View view) {
         if(isUserABorrower()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            AlertDialog.Builder builder = new AlertDialog.Builder(EditUserActivity.this);
 
             // 2. Chain together various setter methods to set the dialog characteristics
             builder.setMessage(R.string.dialog_title)
                     .setTitle(R.string.user_is_borrower);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
 
+                    //some code
+
+                } });
             // 3. Get the AlertDialog from create()
             AlertDialog dialog = builder.create();
             dialog.show();
