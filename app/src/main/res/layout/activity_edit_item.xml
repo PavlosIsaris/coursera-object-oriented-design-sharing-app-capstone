@@ -149,10 +149,7 @@
             android:textAppearance="@android:style/TextAppearance.Medium"
             android:textOff="@string/toggle_borrowed"
             android:textOn="@string/toggle_available" />
-        <Spinner
-            android:id="@+id/users_spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -170,14 +167,19 @@
             android:text="@string/borrower_hint"
             android:textAppearance="@android:style/TextAppearance.Medium"/>
 
-        <EditText
-            android:id="@+id/borrower"
+        <Spinner
+            android:id="@+id/users_spinner"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/borrower_hint"
-            android:inputType="textPersonName"
-            android:textAppearance="@android:style/TextAppearance.Medium"
-            android:maxLength="24" />
+            android:layout_height="wrap_content"/>
+
+        <!--<EditText-->
+            <!--android:id="@+id/borrower"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="@string/borrower_hint"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:textAppearance="@android:style/TextAppearance.Medium"-->
+            <!--android:maxLength="24" />-->
 
     </LinearLayout>
 

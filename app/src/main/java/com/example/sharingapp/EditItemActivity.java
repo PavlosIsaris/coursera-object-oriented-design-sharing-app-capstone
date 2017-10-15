@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -41,7 +42,7 @@ public class EditItemActivity extends AppCompatActivity {
     private EditText length;
     private EditText width;
     private EditText height;
-    private EditText borrower;
+//    private EditText borrower;
     private TextView  borrower_tv;
     private Switch status;
     private Spinner users_spinner;
@@ -59,7 +60,7 @@ public class EditItemActivity extends AppCompatActivity {
         length = (EditText) findViewById(R.id.length);
         width = (EditText) findViewById(R.id.width);
         height = (EditText) findViewById(R.id.height);
-        borrower = (EditText) findViewById(R.id.borrower);
+//        borrower = (EditText) findViewById(R.id.borrower);
         borrower_tv = (TextView) findViewById(R.id.borrower_tv);
         photo = (ImageView) findViewById(R.id.image_view);
         status = (Switch) findViewById(R.id.available_switch);
@@ -67,14 +68,11 @@ public class EditItemActivity extends AppCompatActivity {
 
         users_spinner = (Spinner) findViewById(R.id.users_spinner);
         userList.loadUsers(context);
-        ArrayList<User> usersTest = userList.getUsers();
-        System.out.println(usersTest.size());
         UserAdapter adapter = new UserAdapter(context, userList.getUsers(), R.layout.list_user);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         users_spinner.setAdapter(adapter);
-
         item_list.loadItems(context);
-
+        userSpinnerHandler();
         // get intent from HomeActivity
         Intent intent = getIntent();
         int pos = intent.getIntExtra("position", 0);
@@ -94,11 +92,15 @@ public class EditItemActivity extends AppCompatActivity {
         String status_str = item.getStatus();
         if (status_str.equals("Borrowed")) {
             status.setChecked(false);
-            borrower.setText(item.getBorrower());
+//            borrower.setText(item.getBorrower());
         } else {
             borrower_tv.setVisibility(View.GONE);
-            borrower.setVisibility(View.GONE);
+            users_spinner.setVisibility(View.GONE);
+//            borrower.setVisibility(View.GONE);
         }
+
+        if(item.getBorrower() != null)
+            setSelectedBorrower();
 
         image = item.getImage();
         if (image != null) {
@@ -106,6 +108,34 @@ public class EditItemActivity extends AppCompatActivity {
         } else {
             photo.setImageResource(android.R.drawable.ic_menu_gallery);
         }
+    }
+
+    private void setSelectedBorrower() {
+        for(int i = 0; i< userList.getSize(); i++) {
+            if(item.getBorrower().getId().equals(userList.getUser(i).getId())) {
+                System.out.println("email: "+ item.getBorrower().getEmail());
+                System.out.println("position: " + i);
+                users_spinner.setSelection(i);
+                break;
+            }
+        }
+    }
+
+    private void userSpinnerHandler() {
+        users_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+//                User borrower = (User) users_spinner.getSelectedItem();
+//                item.setBorrower(borrower);
+//                System.out.println("username: " + borrower.getUsername());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
     }
 
     public void addPhoto(View view) {
@@ -146,7 +176,7 @@ public class EditItemActivity extends AppCompatActivity {
         String length_str = length.getText().toString();
         String width_str = width.getText().toString();
         String height_str = height.getText().toString();
-        String borrower_str = borrower.getText().toString();
+//        String borrower_str = borrower.getText().toString();
 
         Dimensions dimensions = new Dimensions(length_str, width_str, height_str);
 
@@ -190,7 +220,10 @@ public class EditItemActivity extends AppCompatActivity {
         if (!checked) {
             // means borrowed
             updated_item.setStatus("Borrowed");
-            updated_item.setBorrower(borrower_str);
+//            updated_item.setBorrower(borrower_str);
+            // todo
+            User borrower = (User) users_spinner.getSelectedItem();
+            updated_item.setBorrower(borrower);
         }
         item_list.addItem(updated_item);
 
@@ -208,14 +241,16 @@ public class EditItemActivity extends AppCompatActivity {
     public void toggleSwitch(View view){
         if (status.isChecked()) {
             // means was previously borrowed
-            borrower.setVisibility(View.GONE);
+            // borrower.setVisibility(View.GONE);
             borrower_tv.setVisibility(View.GONE);
-            item.setBorrower("");
+            users_spinner.setVisibility(View.GONE);
+            item.setBorrower(null);
             item.setStatus("Available");
 
         } else {
             // means was previously available
-            borrower.setVisibility(View.VISIBLE);
+            // borrower.setVisibility(View.VISIBLE);
+            users_spinner.setVisibility(View.VISIBLE);
             borrower_tv.setVisibility(View.VISIBLE);
         }
     }

@@ -76,7 +76,7 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:onClick="saveUser"
-            android:text="@string/save"
+            android:text="@string/save_user"
             android:textAppearance="@android:style/TextAppearance.Medium"/>
 
         <Button
